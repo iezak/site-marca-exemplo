@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Header() {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -10,7 +11,12 @@ export default function Header() {
   }
 
   return (
-    <header className="header">
+    <motion.header
+      className="header"
+      initial={{ y: -24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.55, ease: "easeOut" }}
+    >
       <div className="container header__content">
         <Link to="/" className="logo" onClick={fecharMenu}>
           Marca<span>Exemplo</span>
@@ -36,6 +42,6 @@ export default function Header() {
           </NavLink>
         </nav>
       </div>
-    </header>
+    </motion.header>
   );
 }
