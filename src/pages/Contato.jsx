@@ -1,22 +1,36 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedSection from "../components/AnimatedSection";
 
 export default function Contato() {
   return (
     <>
       <section className="page-hero">
         <div className="container">
-          <span className="eyebrow">Contato</span>
-          <h1>Fale com a marca</h1>
-          <p>
-            Preencha o formulário abaixo para solicitar informações, tirar
-            dúvidas ou pedir um orçamento.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: "easeOut" }}
+          >
+            <span className="eyebrow">Contato</span>
+            <h1>Fale com a marca</h1>
+            <p>
+              Preencha o formulário abaixo para solicitar informações, tirar
+              dúvidas ou pedir um orçamento.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      <section className="section">
+      <AnimatedSection className="section">
         <div className="container contact-grid">
-          <div className="contact-info">
+          <motion.div
+            className="contact-info"
+            initial={{ opacity: 0, x: -28 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.75, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }}
+          >
             <h2>Canais de atendimento</h2>
             <p>
               Estes dados podem ser trocados pelos contatos reais da cliente.
@@ -36,64 +50,40 @@ export default function Contato() {
               <MapPin size={22} />
               <span>Cidade/UF - Brasil</span>
             </div>
-          </div>
+          </motion.div>
 
-          <form
+          <motion.form
             className="contact-form"
             action="https://formspree.io/f/SEU_ID_AQUI"
             method="POST"
+            initial={{ opacity: 0, x: 28 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.75, ease: "easeOut", delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <div>
               <label htmlFor="nome">Nome</label>
-              <input
-                id="nome"
-                name="nome"
-                type="text"
-                placeholder="Seu nome"
-                required
-              />
+              <input id="nome" name="nome" type="text" placeholder="Seu nome" required />
             </div>
 
             <div>
               <label htmlFor="email">E-mail</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="seuemail@exemplo.com"
-                required
-              />
+              <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" required />
             </div>
 
             <div>
               <label htmlFor="telefone">Telefone</label>
-              <input
-                id="telefone"
-                name="telefone"
-                type="tel"
-                placeholder="(00) 00000-0000"
-              />
+              <input id="telefone" name="telefone" type="tel" placeholder="(00) 00000-0000" />
             </div>
 
             <div>
               <label htmlFor="assunto">Assunto</label>
-              <input
-                id="assunto"
-                name="assunto"
-                type="text"
-                placeholder="Ex: orçamento, dúvida, parceria..."
-              />
+              <input id="assunto" name="assunto" type="text" placeholder="Ex: orçamento, dúvida, parceria..." />
             </div>
 
             <div>
               <label htmlFor="mensagem">Mensagem</label>
-              <textarea
-                id="mensagem"
-                name="mensagem"
-                rows="6"
-                placeholder="Digite sua mensagem"
-                required
-              />
+              <textarea id="mensagem" name="mensagem" rows="6" placeholder="Digite sua mensagem" required />
             </div>
 
             <button className="button button--primary" type="submit">
@@ -103,9 +93,9 @@ export default function Contato() {
             <p className="form-note">
               Atenção: troque o endpoint do Formspree antes de publicar.
             </p>
-          </form>
+          </motion.form>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }
